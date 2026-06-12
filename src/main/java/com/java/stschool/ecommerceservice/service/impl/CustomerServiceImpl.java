@@ -3,7 +3,7 @@ package com.java.stschool.ecommerceservice.service.impl;
 import com.java.stschool.ecommerceservice.enums.Status;
 import com.java.stschool.ecommerceservice.exception.CustomerExistsException;
 import com.java.stschool.ecommerceservice.exception.CustomerNotFoundException;
-import com.java.stschool.ecommerceservice.model.Customer;
+import com.java.stschool.ecommerceservice.entity.Customer;
 import com.java.stschool.ecommerceservice.repository.CustomerRepository;
 import com.java.stschool.ecommerceservice.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +38,10 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepository.findById(customer.getId()).orElseThrow(()->
             new CustomerNotFoundException("customer not found with id : " + customer.getId())
         );
-        return customerRepository.update(customer);
+        customer.setStatus(Status.ACTIVE);
+        customer.setCreatedAt(LocalDateTime.now());
+        customer.setLastLoggedInAt(LocalDateTime.now());
+        return customerRepository.save(customer);
     }
 
     @Override

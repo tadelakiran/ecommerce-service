@@ -2,7 +2,7 @@ package com.java.stschool.ecommerceservice.service;
 
 import com.java.stschool.ecommerceservice.exception.CustomerExistsException;
 import com.java.stschool.ecommerceservice.exception.CustomerNotFoundException;
-import com.java.stschool.ecommerceservice.model.Customer;
+import com.java.stschool.ecommerceservice.entity.Customer;
 
 import java.util.List;
 
